@@ -130,7 +130,7 @@ class App extends Component {
 			}
 		}*/
 	  
-		axios.post('http://callector-django.herokuapp.com/' + this.state.game + '/api-token-auth/', Querystring.stringify(data))   
+		axios.post('https://callector-django.herokuapp.com/' + this.state.game + '/api-token-auth/', Querystring.stringify(data))   
 		.then(response => {
 			console.log('api-token-auth ' + response.data.token);
 			this.setState({ token:response.data.token}, function() {
@@ -147,7 +147,7 @@ class App extends Component {
 	  
 	    const AuthStr = 'Token '.concat(this.state.token);
 		
-		axios.get('http://callector-django.herokuapp.com/' + this.state.game + '/init/', { headers: { Authorization: AuthStr } })
+		axios.get('https://callector-django.herokuapp.com/' + this.state.game + '/init/', { headers: { Authorization: AuthStr } })
 		.then(response => {
 			// If request is good...
 			console.log('init: ' + response.data);
@@ -167,7 +167,7 @@ class App extends Component {
 	  
 		const AuthStr = 'Token '.concat(this.state.token);
 		
-		axios.post('http://callector-django.herokuapp.com/numbergame/message/', {"message":["get_available_lessons"], "state":this.state.st}, { headers: { Authorization: AuthStr } })
+		axios.post('https://callector-django.herokuapp.com/numbergame/message/', {"message":["get_available_lessons"], "state":this.state.st}, { headers: { Authorization: AuthStr } })
 		.then(response => {
 			// If request is good...
 			console.log('lessons: ' + response.data.lessons);	
@@ -190,7 +190,7 @@ class App extends Component {
 	
 		console.log('lesson: ' + lesson);
 		
-		axios.post('http://callector-django.herokuapp.com/numbergame/message/', {"message":["set_lesson_by_name", lesson], "state":this.state.st}, { headers: { Authorization: AuthStr } })
+		axios.post('https://callector-django.herokuapp.com/numbergame/message/', {"message":["set_lesson_by_name", lesson], "state":this.state.st}, { headers: { Authorization: AuthStr } })
 		.then(response => {
 			// If request is good...
 			console.log('prompt: ' + response.data.text);
@@ -229,7 +229,7 @@ class App extends Component {
 	  
 		const AuthStr = 'Token '.concat(this.state.token);
 		
-		axios.post('http://callector-django.herokuapp.com/numbergame/message/', {"message":["help_file"], "state":this.state.st}, { headers: { Authorization: AuthStr } })
+		axios.post('https://callector-django.herokuapp.com/numbergame/message/', {"message":["help_file"], "state":this.state.st}, { headers: { Authorization: AuthStr } })
 		.then(response => {
 			// If request is good...
 			// TODO: Find the correct field
@@ -247,7 +247,7 @@ class App extends Component {
 		
 		console.log(sentence);
 	
-		axios.post('http://callector-django.herokuapp.com/' + this.state.game + '/message/', {"message":sentence.toLowerCase().trim()}, { headers: { Authorization: AuthStr } })
+		axios.post('https://callector-django.herokuapp.com/' + this.state.game + '/message/', {"message":sentence.toLowerCase().trim()}, { headers: { Authorization: AuthStr } })
 		//axios.post('http://callector-django.herokuapp.com/numbergame/message/', {"message":["match", sentence.toLowerCase().trim()], "state":this.state.st}, { headers: { Authorization: AuthStr } })
 		.then(response => {
 			// If request is good...
@@ -281,7 +281,7 @@ class App extends Component {
 		this.setState({match: ""});
 		document.getElementById('final').innerHTML = "&nbsp;"
 			
-		axios.post('http://callector-django.herokuapp.com/' + this.state.game + '/message/', {"message":"next"}, { headers: { Authorization: AuthStr } })
+		axios.post('https://callector-django.herokuapp.com/' + this.state.game + '/message/', {"message":"next"}, { headers: { Authorization: AuthStr } })
 		.then(response => {
 			// If request is good...
 			console.log('prompt: ' + response.data);
@@ -302,7 +302,7 @@ class App extends Component {
 		this.setState({match: ""});
 		document.getElementById('final').innerHTML = "&nbsp;"
 		
-		axios.post('http://callector-django.herokuapp.com/' + this.state.game + '/message/', {"message":"back"}, { headers: { Authorization: AuthStr } })
+		axios.post('https://callector-django.herokuapp.com/' + this.state.game + '/message/', {"message":"back"}, { headers: { Authorization: AuthStr } })
 		.then(response => {
 			// If request is good...
 			console.log('prompt: ' + response.data);
